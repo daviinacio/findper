@@ -15,6 +15,7 @@ $argadd ~/projects/findper
 set stal=2
 tabnew
 tabnew
+tabnew
 tabrewind
 edit main.cpp
 set splitbelow splitright
@@ -46,7 +47,7 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 10
-normal! 0
+normal! 09|
 lcd ~/projects/findper
 wincmd w
 argglobal
@@ -67,9 +68,35 @@ normal! zt
 normal! 0
 lcd ~/projects/findper
 wincmd w
-2wincmd w
 exe 'vert 1resize ' . ((&columns * 76 + 60) / 121)
 exe 'vert 2resize ' . ((&columns * 44 + 60) / 121)
+tabnext
+edit ~/projects/findper/README.md
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 1 - ((0 * winheight(0) + 12) / 25)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+lcd ~/projects/findper
 tabnext
 edit ~/projects/findper/.gitignore
 set splitbelow splitright
@@ -124,10 +151,11 @@ normal! zt
 16
 normal! 021|
 lcd ~/projects/findper
-tabnext 1
+tabnext 2
 set stal=1
+badd +15 ~/projects/findper/README.md
+badd +1 ~/projects/findper
 badd +1 ~/projects/findper/.gitignore
-badd +0 ~/projects/findper
 badd +1 ~/projects/findper/Makefile
 badd +1 ~/projects/findper/main.cpp
 badd +15 ~/projects/qualmusica/doc.cpp
@@ -136,6 +164,7 @@ badd +24 ~/projects/qualmusica/main.cpp
 badd +1 ~/projects/findper/.vim
 badd +1 ~/projects/findper/term
 badd +1 ~/projects/findper/findper
+badd +12 ~/git/arduino-buffer/README.md
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
