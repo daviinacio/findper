@@ -1,11 +1,28 @@
 ifeq ($(OS),Windows_NT)
 	CFILE=findper.exe
-	IFOLDER=C:/windows/system32
-	ICMD=cp
+	IFOLDER="%appdata%\daviinacio"
+
+	CINSTALL=copy $(CFILE) $(IFOLDER) && PATH $(IFOLDER)
+	CUNINSTALL=del $(IFOLDER)\$(CFILE)
+
 else
-	CFILE=findper
-	IFOLDER=~/../usr/bin
-	ICMD=install
+	UNAME_S := $(shell uname -s)
+	
+	ifeq ($(UNAME_S),Linux)
+        CFILE=findper
+		IFOLDER=/usr/local/bin
+
+		CINSTALL=sudo install $(CFILE) $(IFOLDER)
+		CUNINSTALL=sudo rm $(IFOLDER)/$(CFILE)
+
+	else
+		CFILE=findper
+		IFOLDER=/data/data/com.termux/files/usr/bin
+
+		CINSTALL=sudo install $(CFILE) $(IFOLDER)
+		CUNINSTALL=sudo rm $(IFOLDER)/$(CFILE)
+    endif
+
 endif
 
 
@@ -13,5 +30,8 @@ findper: main.cpp
 	@g++ main.cpp -o $(CFILE) -I.
 
 install: findper
-	@$(ICMD) $(CFILE) $(IFOLDER)
+	@$(CINSTALL)
+
+uninstall:
+	@$(CUNINSTALL)
 
