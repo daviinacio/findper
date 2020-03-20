@@ -1,6 +1,21 @@
+/*
+    ____    __ ___    _ _     __ _ _ __  _ __  ___
+   |  _  \ / _` | \  / / |   / _` |  _ \|  _ \/ __|
+   | |_ ) | (_| |\ \/ /| |  | (_| | |_) | |_) \__ \
+   |____ / \__,_| \__/ |_|   \__,_|  __/|  __/|___/
+         copyright 2020    v0.0.1 |_|   |_|  alpha
+
+ *          name: FindPer
+ *        author: daviinacio
+ *   description: Quick way to find product price change percent
+ *       license: MIT
+
+**/
+
 #include <iostream>
 #include <vector>
 #include <string>
+#include <algorithm>
 
 #define ARG_NULL -1
 
