@@ -6,21 +6,22 @@ ifeq ($(OS),Windows_NT)
 	CUNINSTALL=del $(IFOLDER)\$(CFILE)
 
 else
-	UNAME_S := $(shell uname -s)
+	UNAME_O := $(shell uname -o)
 	
-	ifeq ($(UNAME_S),Linux)
+	ifeq ($(UNAME_O),GNU/Linux)
         CFILE=findper
 		IFOLDER=/usr/local/bin
 
 		CINSTALL=sudo install $(CFILE) $(IFOLDER)
 		CUNINSTALL=sudo rm $(IFOLDER)/$(CFILE)
 
-	else
+	endif
+	ifeq ($(UNAME_O),Android)
 		CFILE=findper
 		IFOLDER=/data/data/com.termux/files/usr/bin
 
-		CINSTALL=sudo install $(CFILE) $(IFOLDER)
-		CUNINSTALL=sudo rm $(IFOLDER)/$(CFILE)
+		CINSTALL=install $(CFILE) $(IFOLDER)
+		CUNINSTALL=rm $(IFOLDER)/$(CFILE)
     endif
 
 endif
