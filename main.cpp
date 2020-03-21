@@ -3,7 +3,7 @@
    |  _  \ / _` | \  / / |   / _` |  _ \|  _ \/ __|
    | |_ ) | (_| |\ \/ /| |  | (_| | |_) | |_) \__ \
    |____ / \__,_| \__/ |_|   \__,_|  __/|  __/|___/
-         copyright 2020    v0.0.1 |_|   |_|  alpha
+         copyright 2020           |_|   |_|
 
  *          name: FindPer
  *        author: daviinacio
@@ -12,6 +12,13 @@
 
 **/
 
+// App informations
+#define APP_NAME "findper"
+#define APP_VERSION "0.0.1"
+#define APP_AUTHOR "daviinacio"
+#define APP_COPYRIGHT "daviapps (c) 2020"
+
+// Includes
 #include <iostream>
 #include <vector>
 #include <string>
@@ -27,16 +34,16 @@
 using namespace std;
 
 
-string app_name;
+//string app_name;
 
 void show_error(int code){
     switch(code){
         case ERROR_MISSING_ARGS:
-            cout << app_name << ": Missing arguments" << endl;
+            cout << APP_NAME << ": Missing arguments" << endl;
             break;
 
         case ERROR_INVALID_ARGS_NUMBER:
-            cout << app_name << ": Invalid argument value" << endl;
+            cout << APP_NAME << ": Invalid argument value" << endl;
             cout << "valid: Number major than zero" << endl;
             break;
     };
@@ -48,8 +55,13 @@ void show_help(int code){
             cout << "   -c           Current value" << endl;
             cout << "   -f           Final value" << endl;
             cout << "   -h           Show help" << endl;
+            cout << "   -v           Show version" << endl;
             break;
     };
+}
+
+void show_version(){
+    cout << APP_NAME << " version " << APP_VERSION << endl;
 }
 
 int validate(double arg){
@@ -69,7 +81,7 @@ int main(int argc, char *argv[]){
     vector<string>::iterator it;
     int argi = 0;
 
-    app_name = string(argv[0]);
+    //app_name = string(argv[0]);
 
     if(argc > 1)
         args.assign(argv + 1, argv + argc);
@@ -86,6 +98,12 @@ int main(int argc, char *argv[]){
     if(find(args.begin(), args.end(), "-h") != args.end()){
         show_help(HELP_MAIN);
     }
+
+    // Version
+    if(find(args.begin(), args.end(), "-v") != args.end()){
+        show_version();
+    }
+
 
     // Find current value
     if((it = find(args.begin(), args.end(), "-c")) != args.end()){
@@ -111,7 +129,7 @@ int main(int argc, char *argv[]){
         }
     }
 
-    /* RESULT */
+    /* RESULT   *   RESULT   *   **/
     if(validate(current_value) == 0 && validate(final_value) == 0){
         result = ((final_value / current_value) - 1) * 100;
 
