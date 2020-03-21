@@ -41,12 +41,12 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 58 - ((10 * winheight(0) + 18) / 36)
+let s:l = 175 - ((26 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-58
-normal! 049|
+175
+normal! 039|
 wincmd w
 argglobal
 terminal ++curwin ++cols=50 ++rows=36 
@@ -122,7 +122,7 @@ normal! zt
 normal! 05|
 tabnext 1
 set stal=1
-badd +1 main.cpp
+badd +74 main.cpp
 badd +1 ~/projects/findper/
 badd +1 Makefile
 badd +1 .gitignore
@@ -137,6 +137,7 @@ badd +1 ~/projects/findper/.vim
 badd +1 ~/projects/findper/term
 badd +1 ~/projects/findper/findper
 badd +12 ~/git/arduino-buffer/README.md
+badd +0 term
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
